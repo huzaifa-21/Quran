@@ -1,6 +1,6 @@
 import { images } from "@/assets/data/images";
 import { useColorScheme } from "nativewind";
-import { Image, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
@@ -35,7 +35,7 @@ export default function Index() {
           <Text className="text-xl font-tajwalmd pt-1">أبدا ألأن</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar hidden />
+      {/* <StatusBar hidden /> */}
     </SafeAreaView>
   );
 }
