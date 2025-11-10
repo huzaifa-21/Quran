@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.light-theme {
+  --color-primary: #795547;
+  --color-secondary: #F0E6D2;
+  --color-background: #FEFBF4;
+  --color-paje: #CC9B76;
+  --color-card-content: #FFE9C2;
+  --color-caption: #A1A1A1;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+}
+
+.dark-theme {
+  --color-primary: #FFFFFF;
+  --color-secondary: #577B9B;
+  --color-background: #141414;
+  --color-caption: #675757;
+}
