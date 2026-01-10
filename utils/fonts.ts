@@ -4,4 +4,5 @@ module.exports = {
   tajwalbo: ["Tajawal-Bold"],
   tajwalmd: ["Tajawal-Medium"],
   mushaf: ["Mushaf"],
+  uthmani: ["uthmani"],
 };

@@ -2,7 +2,11 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { I18nManager } from "react-native";
 import "../global.css";
+
+I18nManager.forceRTL(true);
+I18nManager.allowRTL(true);
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -13,6 +17,7 @@ export default function RootLayout() {
     "Tajawal-Black": require("../assets/fonts/Tajawal/Tajawal-Black.ttf"),
     "Tajawal-Light": require("../assets/fonts/Tajawal/Tajawal-Light.ttf"),
     Mushaf: require("../assets/fonts/mushaf.ttf"),
+    uthmani: require("../assets/fonts/hafs.ttf"),
   });
 
   useEffect(() => {
@@ -24,5 +29,10 @@ export default function RootLayout() {
   if (!loaded && !error) {
     return null;
   }
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="(screens)/index" />
+    </Stack>
+  );
 }
