@@ -20,3 +20,15 @@ export interface PageType {
   text: AyahType[];
   juzNumber: number;
 }
+
+export interface SurahMetaData {
+  number: number;
+  startingPage: number;
+  endingPage: number;
+  name: string;
+  englishName: string;
+  englishNameTranslation: string;
+  revelationType: string;
+  numberOfAyahs: number;
+  revelationOrder: number;
+}

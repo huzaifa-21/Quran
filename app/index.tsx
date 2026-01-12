@@ -16,7 +16,7 @@ export default function Index() {
         <Image
           source={images.mushaf_png}
           resizeMode="contain"
-          className="w-[300px] h-[300px] mx-auto -mt-16"
+          className="w-[300px] h-[300px] mx-auto -mt-16 "
         />
       </View>
       <View className="px-12 ">
@@ -29,10 +29,12 @@ export default function Index() {
           قرأتها بسهولة نسأل الله أن يجعل قراءتك نورًا وهداية وبركة.
         </TextWrapper>
         <TouchableOpacity
-          className="py-2 mt-12 border-[1px] rounded-lg items-center"
+          className="py-2 border-primary mt-12 border-[1px] rounded-lg items-center"
           onPress={() => router.push("/(screens)")}
         >
-          <Text className="text-xl font-tajwalmd pt-1">أرح قلبــــك</Text>
+          <Text className="text-primary text-xl font-tajwalmd pt-1">
+            أرح قلبــــك
+          </Text>
         </TouchableOpacity>
       </View>
       <StatusBar hidden />
