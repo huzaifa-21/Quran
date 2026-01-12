@@ -6,7 +6,7 @@ export default function ScreenWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <SafeAreaView className={`light-theme bg-background flex-1`}>
+    <SafeAreaView className={`light-theme relative bg-background flex-1 `}>
       {children}
     </SafeAreaView>
   );

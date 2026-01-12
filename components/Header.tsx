@@ -2,7 +2,13 @@ import surahs from "@/assets/data/surahs.json";
 import { numberInSurahToArabic } from "@/utils/numberInSurahToArabic";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { SurahMetaData } from "../types/types";
 
@@ -42,7 +48,7 @@ export default function Header({
             () => {}
           );
         }
-      }, 700);
+      }, 100);
     }
   };
 
@@ -62,14 +68,14 @@ export default function Header({
           className={`flex flex-row px-4 items-center gap-5 justify-between mb-8 `}
         >
           <Text
-            className={`font-amiri p-2 text-3xl text-center leading-[1.8] rounded-full bg-secondary items-center justify-center w-[60px] h-[60px] ${
+            className={`font-amiri p-2 text-3xl text-center rounded-full bg-secondary items-center justify-center w-[60px] h-[60px] ${
               active === surahMeta.number ? "!bg-primary text-white" : ""
-            }`}
+            } ${Platform.OS === "ios" && "leading-relaxed "}`}
           >
             {numberInSurahToArabic(surahMeta.number.toString())}
           </Text>
           <View className="flex-1 items-start ">
-            <Text className="font-amiri text-2xl -mb-1 ">
+            <Text className="font-amiri text-2xl -mb-1 leading-loose text-nowrap w-full text-left">
               {surahMeta?.name.slice(5)}
             </Text>
             <Text className="font-amiri text-primary">
@@ -87,9 +93,9 @@ export default function Header({
   };
 
   return (
-    <View className="flex w-full  flex-row justify-between items-center px-5 relative pb-2 mt-2 ">
+    <View className="flex w-full  flex-row justify-between items-center px-5 pb-2 mt-2 ">
       <Feather name="bar-chart" size={24} className=" rotate-[270deg]" />
-      <Text className="font-amiri text-xl ">
+      <Text className="font-amiri text-xl  leading-loose flex-1 text-center ">
         سورة {surahs[active - 1].name.slice(5)}
       </Text>
       <TouchableOpacity>
@@ -111,7 +117,7 @@ export default function Header({
           ref={scrollViewRef}
           entering={FadeInUp.duration(300)}
           exiting={FadeOutUp.duration(300)}
-          className="absolute top-20 left-0 w-[110%] bg-background z-10 max-h-screen-safe"
+          className="absolute top-20 left-0 w-[110%] bg-background z-10 h-[700px] pb-48"
           showsVerticalScrollIndicator={false}
         >
           {surahs.map((surah, index) => (
