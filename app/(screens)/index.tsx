@@ -3,6 +3,7 @@ import surahs from "@/assets/data/surahs.json";
 import Header from "@/components/Header";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import { numberInSurahToArabic } from "@/utils/numberInSurahToArabic";
+import { useKeepAwake } from "expo-keep-awake";
 import { useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Dimensions, Image, Text } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
@@ -46,6 +47,8 @@ export default function Mushaf() {
     const surahNumber = getSurahFromPage(pageNumber);
     setCurrentSurah(surahNumber);
   };
+
+  useKeepAwake();
 
   if (!data) {
     return <ActivityIndicator size="large" color="blue" />;

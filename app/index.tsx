@@ -1,10 +1,22 @@
 import { images } from "@/assets/data/images";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import TextWrapper from "@/components/TextWrapper";
+import { getData, storeData } from "@/utils/storeData";
 import { router } from "expo-router";
+import { useEffect } from "react";
 import { Image, StatusBar, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
+  useEffect(() => {
+    const isLoggedIn = async () => {
+      const isLoggedIn = await getData();
+      if (isLoggedIn) {
+        router.push("/(screens)");
+      }
+    };
+    isLoggedIn();
+  }, []);
+
   return (
     <ScreenWrapper>
       <View className="mt-8">
@@ -30,7 +42,10 @@ export default function Index() {
         </TextWrapper>
         <TouchableOpacity
           className="py-2 border-primary mt-12 border-[1px] rounded-lg items-center"
-          onPress={() => router.push("/(screens)")}
+          onPress={() => {
+            router.push("/(screens)");
+            storeData();
+          }}
         >
           <Text className="text-primary text-xl font-tajwalmd pt-1">
             أرح قلبــــك
