@@ -1,21 +1,42 @@
 import { images } from "@/assets/data/images";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import TextWrapper from "@/components/TextWrapper";
-import { getData, storeData } from "@/utils/storeData";
 import { router } from "expo-router";
-import { useEffect } from "react";
-import { Image, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import * as SecureStore from "expo-secure-store";
+import { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Index() {
+  const [loading, setLoading] = useState(false);
+  async function save() {
+    await SecureStore.setItemAsync("logged_in", "true");
+    router.replace("/(screens)");
+  }
+
+  async function check() {
+    setLoading(true);
+    const value = await SecureStore.getItemAsync("logged_in");
+    console.log(value);
+    if (value) {
+      router.replace("/(screens)");
+    }
+    setLoading(false);
+  }
+
   useEffect(() => {
-    const isLoggedIn = async () => {
-      const isLoggedIn = await getData();
-      if (isLoggedIn) {
-        router.push("/(screens)");
-      }
-    };
-    isLoggedIn();
+    check();
   }, []);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="blue" />;
+  }
 
   return (
     <ScreenWrapper>
@@ -43,8 +64,7 @@ export default function Index() {
         <TouchableOpacity
           className="py-2 border-primary mt-12 border-[1px] rounded-lg items-center"
           onPress={() => {
-            router.push("/(screens)");
-            storeData();
+            save();
           }}
         >
           <Text className="text-primary text-xl font-tajwalmd pt-1">
